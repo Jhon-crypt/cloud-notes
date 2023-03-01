@@ -5,6 +5,7 @@ import Header from './components/header.component'
 import HomePage from './pages/home';
 import SignUpPage from './pages/signup';
 import LoginPage from './pages/login';
+import NotesPage from './pages/notes';
 //import {UUID} from 'uuid-generator-ts';
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="Signup" element={<SignUpPage />} />
           <Route path="Login" element={<LoginPage />} />
+          <Route path="Notes" element={<NotesPage />} />
         </Route>
       </Routes>
     </BrowserRouter>

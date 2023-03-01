@@ -1,6 +1,7 @@
 import React from 'react'
 import Footer from './footer.component'
 import { BiLogInCircle } from "react-icons/bi";
+import {Outlet, Link} from "react-router-dom"
 
 function Login(){
 
@@ -15,12 +16,12 @@ function Login(){
 
 
             <div className="form-floating mb-2">
-                <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com"/>
+                <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com" required/>
                 <label htmlFor="floatingInput">Email address</label>
             </div>
 
             <div className="form-floating mb-2">
-                <input type="password" className="form-control" id="floatingPassword" placeholder="Password"/>
+                <input type="password" className="form-control" id="floatingPassword" placeholder="Password" required/>
                 <label htmlFor="floatingPassword">Password</label>
             </div>
 
@@ -29,15 +30,19 @@ function Login(){
                     
                 </label>
             </div>
+            <Link to="/Notes">
             <button className="w-100 btn btn-lg" type="submit" style={{ "backgroundColor" : "#F7DD88","color" : "#38568C" }}>
                 <b>Login <BiLogInCircle /></b>
             </button>
+            </Link>
 
         </form>
 
         <Footer />
 
         </div>   
+
+        <Outlet />
 
         </>
 
