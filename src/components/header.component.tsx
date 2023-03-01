@@ -29,13 +29,13 @@ function Header(){
 
             <div className="container">
 
-                <a className="navbar-brand" href="/">
+                <Link className="navbar-brand" to="/">
                     <b>
                        <BsFillCloudHaze2Fill style={{ "color" : "#38568C" }}/> 
                        <span style={{ "color" : "#38568C" }}>{nav_head.title1}</span> 
                        <span style={{ "color" : "#F7DD88" }}>{nav_head.title2}</span>
                     </b>
-                </a>
+                </Link>
 
                 <button className="navbar-toggler" 
                     type="button" 
