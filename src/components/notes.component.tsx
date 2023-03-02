@@ -2,68 +2,96 @@ import React from "react";
 import CreateNoteButton from "./createNoteButton.component";
 import { CgCalendarDates } from "react-icons/cg";
 import { CgTime } from "react-icons/cg";
+import { CgTrash } from "react-icons/cg";
 
 
-function Notes(){
+function Notes() {
+
+    const note_item = [
+
+        {title : "Just testing if notes are working"},
+        {title : "Testing something hgvugfv huihu"},
+        {title : "Yet another fucking testbhgyyg"},
+        {title : "Testing something hgvugfv huihu"},
+        {title : "Yet another fucking testbhgyyg"},
+        {title : "Testing something hgvugfv huihu"},
+        {title : "Yet another fucking teshgyyg"},
+        {title : "Testing something hgvugfv huihu"},
+        {title : "Yet another fucking testbhgyyg"}
+
+    ]
 
     return (
 
         <>
-        
+
             <CreateNoteButton />
 
-            <div className="container pt-4 mx-auto" style={{  "width" : "330px" }}>
+            <div className="container pt-4" style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+            }}>
 
-                <div className="card" >
+                <div className="row">
 
-                    <div className="card-body ps-4">
+                {note_item.map((item,index) => (
 
-                        <h4>My name is John My name is John My name is John</h4>
+                    <div className="col mb-2" key={index}>
 
-                        <ul className="nav justify-content-center">
+                        <div className="card" >
 
-                            <li className="nav-item">
+                            <div className="card-body">
 
-                                <a className="nav-link text-decoration-none text-muted" href="/">
+                                <h4>{item.title}</h4>
 
-                                    <CgCalendarDates /> 2/2202
+                                <ul className="nav">
 
-                                </a>
+                                    <li className="nav-item">
 
-                            </li>
+                                        <a className="nav-link text-decoration-none text-muted" href="/">
 
-                            <li className="nav-item">
+                                            <CgCalendarDates /> 2/2202
 
-                                <a className="nav-link text-decoration-none text-muted" href="/">
+                                        </a>
 
-                                    <CgTime /> 12:47
+                                    </li>
 
-                                </a>
+                                    <li className="nav-item">
 
-                            </li>
+                                        <a className="nav-link text-decoration-none text-muted" href="/">
 
-                             <li className="nav-item">
+                                            <CgTime /> 12:47
 
-                                <a className="nav-link text-decoration-none text-muted" href="/">
+                                        </a>
 
-                                    <button className="btn btn-danger">
+                                    </li>
 
-                                        Delete Note
+                                    <li className="nav-item">
 
-                                    </button>
+                                        <a className="nav-link text-decoration-none text-danger" href="/">
 
-                                </a>
+                                            <CgTrash /> Delete
 
-                            </li>
+                                        </a>
 
-                        </ul>
+                                    </li>
+
+                                </ul>
+
+                            </div>
+
+                        </div>
 
                     </div>
+
+
+                ))}   
 
                 </div>
 
             </div>
-        
+
         </>
 
     )
