@@ -3,6 +3,7 @@ import CreateNoteButton from "./createNoteButton.component";
 import { CgCalendarDates } from "react-icons/cg";
 import { CgTime } from "react-icons/cg";
 import { CgTrash } from "react-icons/cg";
+import CreateNoteModal from "./createNoteModal.component";
 
 
 function Notes() {
@@ -18,6 +19,7 @@ function Notes() {
         {title : "Yet another fucking teshgyyg"},
         {title : "Testing something hgvugfv huihu"},
         {title : "Yet another fucking testbhgyyg"}
+        //John what the hell is this
 
     ]
 
@@ -27,7 +29,7 @@ function Notes() {
 
             <CreateNoteButton />
 
-            <div className="container pt-4" style={{
+            <div className="container pt-4 mb-3" style={{
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
@@ -91,6 +93,8 @@ function Notes() {
                 </div>
 
             </div>
+
+            <CreateNoteModal />
 
         </>
 
