@@ -19,7 +19,7 @@ function CreateNoteModal() {
                         <div className="modal-body">
 
                             <form>
-                            
+                                
                                 <textarea className="form-control mb-2" rows={15} id="comment" name="text"></textarea>
 
                                 <button className="w-100 btn btn-lg" type="submit" style={{ 

@@ -6,6 +6,7 @@ import HomePage from './pages/home';
 import SignUpPage from './pages/signup';
 import LoginPage from './pages/login';
 import NotesPage from './pages/notes';
+import ViewNotes from './pages/view';
 //import {UUID} from 'uuid-generator-ts';
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="Signup" element={<SignUpPage />} />
           <Route path="Login" element={<LoginPage />} />
           <Route path="Notes" element={<NotesPage />} />
+          <Route path="View/:heading/:content" element={<ViewNotes />} />
         </Route>
       </Routes>
     </BrowserRouter>

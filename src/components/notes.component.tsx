@@ -1,4 +1,5 @@
 import React from "react";
+import {Outlet, Link} from "react-router-dom"
 import CreateNoteButton from "./createNoteButton.component";
 import { CgCalendarDates } from "react-icons/cg";
 import { CgTime } from "react-icons/cg";
@@ -10,18 +11,18 @@ function Notes() {
 
     const note_item = [
 
-        {title : "Just testing if notes are working"},
-        {title : "Testing something hgvugfv huihu"},
-        {title : "Yet another fucking testbhgyyg"},
-        {title : "Testing something hgvugfv huihu"},
-        {title : "Yet another fucking testbhgyyg"},
-        {title : "Testing something hgvugfv huihu"},
-        {title : "Yet another fucking teshgyyg"},
-        {title : "Testing something hgvugfv huihu"},
-        {title : "Yet another fucking testbhgyyg"}
-        //John what the hell is this
+        {id : 1,title : "Just testing if notes are working",note : "jjbjbcnihsu88ui8qah"},
+        {id : "jbjcjdj",title : "Testing something hgvugfv huihu",note : "jjbjbcnihsu88uih"},
+        {id : "jbjbjb",title : "Yet another fucking testbhgyyg",note : "jjbjbcnihsu88uigchgchc"},
+        {id : "kjjbjcjd",title : "Testing something hgvugfv huihu",note : "jjbjbcnihsu88ui8qah"},
+        {id : "jbjbjbjbj",title : "Yet another fucking testbhgyyg",note : "jjbjbcnihsu88ui8qah"},
+        {id : "jjcbjbdjbjbd",title : "Testing something hgvugfv huihu",note : "jjbjbcnihsu88ui8qah"},
+        {id : "jjhihieohohc",title : "Yet another fucking teshgyyg",note : "jjbjbcnihsu88ui8qah"},
+        {id : "biiuiuiui",title : "Testing something hgvugfv huihu",note : "jjbjbcnihsu88ui8qah"},
+        {id : "jbbkbiuiucu",title : "Yet another fucking testbhgyyg",note : "jjbjbcnihsu88ui8qah"}
 
     ]
+
 
     return (
 
@@ -39,13 +40,15 @@ function Notes() {
 
                 {note_item.map((item,index) => (
 
+                    <>
                     <div className="col mb-2" key={index}>
 
-                        <div className="card" >
+                        <Link className="text-decoration-none" to={`/View/${item.title}/${item.note}`}>
+                        <div className="card">
 
                             <div className="card-body">
 
-                                <h4>{item.title}</h4>
+                                <h4 className="text-dark">{item.title}</h4>
 
                                 <ul className="nav">
 
@@ -84,9 +87,13 @@ function Notes() {
                             </div>
 
                         </div>
-
+                        </Link>
+                       
                     </div>
+                    
+                    <CreateNoteModal />
 
+                    </>
 
                 ))}   
 
@@ -94,7 +101,7 @@ function Notes() {
 
             </div>
 
-            <CreateNoteModal />
+            <Outlet />
 
         </>
 
