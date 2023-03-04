@@ -31,7 +31,7 @@ function Header(){
 
                 <Link className="navbar-brand" to="/">
                     <b>
-                       <BsFillCloudHaze2Fill style={{ "color" : "#38568C" }}/> 
+                       <BsFillCloudHaze2Fill className="me-2" style={{ "color" : "#38568C" }}/> 
                        <span style={{ "color" : "#38568C" }}>{nav_head.title1}</span> 
                        <span style={{ "color" : "#F7DD88" }}>{nav_head.title2}</span>
                     </b>
