@@ -14,7 +14,15 @@ function ViewNotesComp(){
 
                 <h2>{ heading }</h2>
 
-                <p>{content}</p>
+                <div className="container pt-4 mb-3" style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                }}>
+
+                    <p>{content}</p>
+
+                </div>
 
 
             </div>
