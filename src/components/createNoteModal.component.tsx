@@ -19,12 +19,17 @@ function CreateNoteModal() {
                         <div className="modal-body">
 
                             <form>
-                                
-                                <textarea className="form-control mb-2" rows={15} id="comment" name="text"></textarea>
 
-                                <button className="w-100 btn btn-lg" type="submit" style={{ 
-                                    "backgroundColor" : "#38568C",
-                                    "color" : "#F7DD88" 
+                                <div className="form-floating mb-2">
+                                    <input type="text" className="form-control" id="floatingInput" placeholder="Note title" required />
+                                    <label htmlFor="floatingInput">Note title</label>
+                                </div>
+
+                                <textarea className="form-control mb-2" rows={15} id="comment" name="text" placeholder="Write your note"></textarea>
+
+                                <button className="w-100 btn btn-lg" type="submit" style={{
+                                    "backgroundColor": "#38568C",
+                                    "color": "#F7DD88"
                                 }}>
                                     <b>Create <FiPlusCircle /></b>
                                 </button>
