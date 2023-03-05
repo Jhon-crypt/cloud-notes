@@ -15,7 +15,7 @@ function Signup(){
             <h1 className="h3 mb-3 fw-normal">Sign Up</h1>
 
             <div className="form-floating mb-2">
-                <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com" required/>
+                <input type="text" className="form-control" id="floatingInput" placeholder="" required/>
                 <label htmlFor="floatingInput">Name</label>
             </div>
 
