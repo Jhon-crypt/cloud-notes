@@ -8,9 +8,6 @@ import { Navigate } from 'react-router-dom';
 
 function Signup() {
 
-    
-
-
     const [fullName, setFullName] = useState('')
 
     const [email, setEmail] = useState('')
