@@ -21,7 +21,7 @@ function Login() {
 
     const [errorStatus, setErrorStatus] = useState(false)
 
-    const [user, setUser]: any = useState('')
+    const [userName, setUserName] : any = useState('')
 
 
     const handleLogin = async (event: any) => {
@@ -32,7 +32,7 @@ function Login() {
 
         try {
 
-            const { data, error } = await supabase.auth.signInWithPassword({
+            const { data, error } : any = await supabase.auth.signInWithPassword({
                 email: `${email}`,
                 password: `${password}`,
             })
@@ -58,9 +58,13 @@ function Login() {
                 //set seesion
                 ReactSession.setStoreType("localStorage");
 
-                ReactSession.set("user", data);
+                ReactSession.set("user", data.user.email);
 
-                setUser(ReactSession.get("user"))
+                ReactSession.get("user")
+
+                setUserName(data.user.user_metadata.full_name)
+
+                console.log(ReactSession.get("user"))
 
             }
 
@@ -143,7 +147,7 @@ function Login() {
 
                                                 <div className="alert alert-success alert-dismissible w-100">
                                                     <button type="button" className="btn-close" data-bs-dismiss="alert"></button>
-                                                    Welcome {user.user.user_metadata.full_name}, 
+                                                    Welcome {userName}, 
                                                     click <Link to="/Notes">here</Link> to continue
                                                 </div>
 
