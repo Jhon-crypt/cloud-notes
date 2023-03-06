@@ -24,7 +24,7 @@ function AccountCreated() {
 
                             <Link to="/Login">
                                 <button className="w-100 btn btn-lg" type="submit" style={{ "backgroundColor": "#F7DD88", "color": "#38568C" }}>
-                                    <b>I have Clicked The Link <BiLogInCircle /></b>
+                                    <b>I've Clicked The Link <BiLogInCircle /></b>
                                 </button>
                             </Link>
 

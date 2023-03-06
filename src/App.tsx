@@ -34,6 +34,7 @@ function App() {
           <Route path="View/:heading/:content" element={<ViewNotes />} />
           <Route path="Profile" element={<ProfilePage />} />
           <Route path="AccountCreated" element={<AccountCreatedPage />} />
+
         </Route>
       </Routes>
     </BrowserRouter>
