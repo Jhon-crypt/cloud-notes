@@ -4,7 +4,6 @@ import { BsFillCloudHaze2Fill } from "react-icons/bs";
 import { BiUserCircle } from "react-icons/bi";
 import { BiLogInCircle } from "react-icons/bi";
 import { BiUserPin } from "react-icons/bi";
-import { BiLogOutCircle } from "react-icons/bi";
 
 
 function Header(){
@@ -20,8 +19,7 @@ function Header(){
 
         {item : "Login", icon : <BiLogInCircle />},
         {item : "Signup", icon : <BiUserCircle/>},
-        {item : "Profile", icon : <BiUserPin/>},
-        {item : "Logout", icon : <BiLogOutCircle/>}
+        {item : "Profile", icon : <BiUserPin/>}
 
     ]
 
