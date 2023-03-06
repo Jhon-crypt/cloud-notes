@@ -48,11 +48,19 @@ function Signup() {
 
             console.log(error)
 
+            if(error){
+
+                console.log(error)
+
+            }else{
+
+                setErrorStatus(true)
+
+            }
+
+
         } catch (error) {
 
-            console.log(error)
-
-            setErrorStatus(true)
 
         }
 
@@ -81,6 +89,20 @@ function Signup() {
                 ) : (
 
 
+                    <>
+
+                    {errorStatus ? (
+
+                        <Navigate to="/AccountCreated" replace={true} />
+
+                        ) : (
+
+                            <></>
+
+                        )
+                    }
+                    
+                    
                     <div className="px-4 pt-5 my-5 text-center">
 
                         <form className="mx-auto" style={{ "maxWidth": "330px" }} onSubmit={handleSignup}>
@@ -111,7 +133,8 @@ function Signup() {
                                     className="form-control"
                                     id="floatingPassword"
                                     placeholder="Password"
-                                    value={password} onChange={(event) => setPassword(event.target.value)}
+                                    value={password} onChange={(event) => setPassword(event.target.value)} 
+                                    minLength={6}
                                     required />
                                 <label htmlFor="floatingPassword">Password</label>
                             </div>
@@ -126,11 +149,10 @@ function Signup() {
 
                         <Footer />
 
-                    </div>
+                    </div></>
 
                 )
             }
-
 
 
         </>

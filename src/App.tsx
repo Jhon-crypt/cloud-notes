@@ -9,6 +9,7 @@ import LoginPage from './pages/login';
 import NotesPage from './pages/notes';
 import ViewNotes from './pages/view';
 import ProfilePage from './pages/profile';
+import AccountCreatedPage from './pages/accountCreated';
 //import {UUID} from 'uuid-generator-ts';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
           <Route path="Notes" element={<NotesPage />} />
           <Route path="View/:heading/:content" element={<ViewNotes />} />
           <Route path="Profile" element={<ProfilePage />} />
+          <Route path="AccountCreated" element={<AccountCreatedPage />} />
         </Route>
       </Routes>
     </BrowserRouter>
