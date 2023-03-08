@@ -6,7 +6,7 @@ import { useState } from 'react'
 import supabase from '../supabase';
 import { Oval } from 'react-loader-spinner'
 //import { Navigate } from 'react-router-dom';
-import { ReactSession } from 'react-client-session';
+//import { ReactSession } from 'react-client-session';
 
 
 function Login() {
@@ -49,22 +49,20 @@ function Login() {
 
             } else {
 
-                console.log(data)
+                //console.log(data)
 
                 setErrorStatus(false)
 
                 setLoginStatus(true)
 
-                //set seesion
-                ReactSession.setStoreType("localStorage");
 
-                ReactSession.set("user", data.user.email);
+                sessionStorage.setItem("user", data);
 
-                ReactSession.get("user")
+                //ReactSession.get("user")
 
                 setUserName(data.user.user_metadata.full_name)
 
-                console.log(ReactSession.get("user"))
+                console.log(sessionStorage.getItem("user"))
 
             }
 
