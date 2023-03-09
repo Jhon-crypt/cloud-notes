@@ -2,7 +2,7 @@ import React from 'react'
 import Notes from '../components/notes.component'
 import { useState, useEffect } from 'react'
 import supabase from '../supabase';
-import LogOut from '../components/logout';
+import LogOut from '../components/logout.component';
 
 function NotesPage(
 ) {
