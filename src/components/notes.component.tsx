@@ -1,8 +1,6 @@
 import React from "react";
 import { Outlet, Link } from "react-router-dom"
 import CreateNoteButton from "./createNoteButton.component";
-import { CgCalendarDates } from "react-icons/cg";
-import { CgTime } from "react-icons/cg";
 import { CgTrash } from "react-icons/cg";
 import CreateNoteModal from "./createNoteModal.component";
 import supabase from "../supabase";
@@ -123,26 +121,6 @@ function Notes() {
                                                         <h4 className="text-dark">{item.title}</h4>
 
                                                         <ul className="nav">
-
-                                                            <li className="nav-item">
-
-                                                                <a className="nav-link text-decoration-none text-muted" href="/">
-
-                                                                    <CgCalendarDates /> {item.date_created}
-
-                                                                </a>
-
-                                                            </li>
-
-                                                            <li className="nav-item">
-
-                                                                <a className="nav-link text-decoration-none text-muted" href="/">
-
-                                                                    <CgTime /> {item.time_created}
-
-                                                                </a>
-
-                                                            </li>
 
                                                             <li className="nav-item">
 

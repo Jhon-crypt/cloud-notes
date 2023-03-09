@@ -1,6 +1,6 @@
 import React from 'react'
 import { FiPlusCircle } from "react-icons/fi";
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import supabase from '../supabase';
 import { Oval } from 'react-loader-spinner'
 
@@ -20,8 +20,6 @@ function CreateNoteModal() {
     const handleCreateNote = async (event: any) => {
 
         event.preventDefault()
-
-
 
         // fetching user id 
         try {
@@ -49,6 +47,8 @@ function CreateNoteModal() {
 
                     if (error) {
 
+                        window.location.href = '/Notes';
+
                         console.log(error)
 
                         setErrorStatus(true)
@@ -61,6 +61,7 @@ function CreateNoteModal() {
 
                         setNoteStatus(true)
 
+                    
                     }
 
 
@@ -146,6 +147,7 @@ function CreateNoteModal() {
                                                                     <button type="button" className="btn-close" data-bs-dismiss="alert"></button>
                                                                     Note Created
                                                                 </div>
+
                                                             </>
 
                                                         ) : (
