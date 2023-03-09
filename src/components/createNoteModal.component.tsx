@@ -47,8 +47,6 @@ function CreateNoteModal() {
 
                     if (error) {
 
-                        window.location.href = '/Notes';
-
                         console.log(error)
 
                         setErrorStatus(true)
@@ -56,6 +54,8 @@ function CreateNoteModal() {
                         setNoteStatus(false)
 
                     } else {
+
+                        window.location.href = '/Notes';
 
                         setErrorStatus(false)
 
