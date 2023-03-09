@@ -3,16 +3,57 @@ import { BiUserCircle } from "react-icons/bi";
 import { BiUserPin } from "react-icons/bi";
 import { BiLogOutCircle } from "react-icons/bi";
 //import LogoutModal from './logoutModal';
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import supabase from '../supabase';
 import { useNavigate } from 'react-router-dom';
 import { Oval } from 'react-loader-spinner'
+import LogOut from './logout';
 
 function Profile() {
 
     let navigate = useNavigate()
 
     const [loading, setLoading] = useState(false)
+
+    const [userLoginStatus, setUserLoginStatus]: any = useState(false)
+
+
+    useEffect(() => {
+
+        const checkUserLogin = async () => {
+
+            try {
+
+                const { data, error } = await supabase.auth.getSession()
+
+                if (!data.session) {
+
+                    console.log(error)
+
+                    setUserLoginStatus(false)
+
+
+                } else {
+
+                    console.log(data)
+
+                    setUserLoginStatus(true)
+
+                }
+
+
+            } catch (error) {
+
+                console.log(error)
+
+            }
+
+        }
+
+        checkUserLogin()
+
+    }, [])
+
 
     async function handleLogout() {
 
@@ -46,6 +87,8 @@ function Profile() {
 
         <>
 
+
+
             {loading ?
 
                 (
@@ -68,35 +111,52 @@ function Profile() {
 
                 ) : (
 
-                    <div className="container px-4 pt-3 my-5 text-center">
+                    <>
 
-                        <h2>Profile <BiUserCircle /></h2>
+                        {userLoginStatus ?
 
-                        <div className="mt-4">
+                            (
 
-                            <div className="card mx-auto" style={{ width: '300px' }}>
+                                <div className="container px-4 pt-3 my-5 text-center">
 
-                                <div className="card-body">
+                                    <h2>Profile <BiUserCircle /></h2>
 
-                                    <BiUserPin style={{ "fontSize": "100px" }} />
-                                    <h3>Oladele John</h3>
-                                    <p>johnoladele690@gmail.com</p>
+                                    <div className="mt-4">
 
-                                    <button onClick={handleLogout} className="btn btn-danger">
+                                        <div className="card mx-auto" style={{ width: '300px' }}>
 
-                                        Logout <BiLogOutCircle />
+                                            <div className="card-body">
 
-                                    </button>
+                                                <BiUserPin style={{ "fontSize": "100px" }} />
+                                                <h3>Oladele John</h3>
+                                                <p>johnoladele690@gmail.com</p>
+
+                                                <button onClick={handleLogout} className="btn btn-danger">
+
+                                                    Logout <BiLogOutCircle />
+
+                                                </button>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
 
                                 </div>
 
-                            </div>
+                            ) : (
 
-                        </div>
+                                <LogOut />
 
-                    </div>
+                            )
+
+                        }
+
+                    </>
 
                 )
+
 
             }
 

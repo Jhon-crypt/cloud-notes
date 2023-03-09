@@ -2,7 +2,7 @@ import React from 'react'
 import Notes from '../components/notes.component'
 import { useState, useEffect } from 'react'
 import supabase from '../supabase';
-//import LoginGuard from '../api/loginGuard'
+import LogOut from '../components/logout';
 
 function NotesPage(
 ) {
@@ -60,7 +60,7 @@ function NotesPage(
 
                 ) : (
 
-                    <h1>Not Signed In</h1>
+                    <LogOut />
 
                 )
 
