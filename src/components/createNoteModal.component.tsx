@@ -1,6 +1,6 @@
 import React from 'react'
 import { FiPlusCircle } from "react-icons/fi";
-import { useEffect,useState } from 'react'
+import { useEffect, useState } from 'react'
 import supabase from '../supabase';
 import { Oval } from 'react-loader-spinner'
 
@@ -10,32 +10,18 @@ function CreateNoteModal() {
 
     const [note, setNote] = useState('')
 
-    const [noteDate, setNoteDate] = useState('')
-
-    const [currentTime, setCurrentTime] = useState('');
-
     const [loading, setLoading] = useState(false)
 
     const [errorStatus, setErrorStatus] = useState(false)
 
     const [noteStatus, setNoteStatus] = useState(false)
 
-    useEffect(() => {
-        const interval = setInterval(() => {
-          const date = new Date();
-          const hours = date.getHours();
-          const minutes = date.getMinutes();
-          const seconds = date.getSeconds();
-          setCurrentTime(`${hours}:${minutes}:${seconds}`);
-        }, 1000);
-        return () => clearInterval(interval);
-      }, []);
 
     const handleCreateNote = async (event: any) => {
 
         event.preventDefault()
 
-        
+
 
         // fetching user id 
         try {
@@ -46,24 +32,17 @@ function CreateNoteModal() {
 
             if (data) {
 
-                const date = new Date()
-
-                setNoteDate(date.toString())
-
                 console.log(data)
 
                 //alert(`${data.user.id}`)
 
                 try {
 
-
                     const { error } = await
                         supabase.from('notes').insert({
                             title: `${title}`,
                             note: `${note}`,
-                            user_id: `${data.user.id}`,
-                            date_created : `${noteDate}`,
-                            time_created : `${currentTime}`
+                            user_id: `${data.user.id}`
                         })
 
                     setLoading(false)
@@ -222,8 +201,6 @@ function CreateNoteModal() {
                     </div>
                 </div>
             </div>
-
-
 
         </>
 

@@ -1,109 +1,193 @@
 import React from "react";
-import {Outlet, Link} from "react-router-dom"
+import { Outlet, Link } from "react-router-dom"
 import CreateNoteButton from "./createNoteButton.component";
 import { CgCalendarDates } from "react-icons/cg";
 import { CgTime } from "react-icons/cg";
 import { CgTrash } from "react-icons/cg";
 import CreateNoteModal from "./createNoteModal.component";
+import supabase from "../supabase";
+import { useEffect, useState } from 'react'
+import { Oval } from 'react-loader-spinner'
 
 
 function Notes() {
 
-    const note_item = [
 
-        {id : 1,title : "Just testing if notes are working",note : "jjbjbcnihsu88ui8qah"},
-        {id : "jbjcjdj",title : "Testing something hgvugfv huihu",note : "jjbjbcnihsu88uih"},
-        {id : "jbjbjb",title : "Yet another fucking testbhgyyg",note : "jjbjbcnihsu88uigchgchc"},
-        {id : "kjjbjcjd",title : "Testing something hgvugfv huihu",note : "jjbjbcnihsu88ui8qah"},
-        {id : "jbjbjbjbj",title : "Yet another fucking testbhgyyg",note : "jjbjbcnihsu88ui8qah"},
-        {id : "jjcbjbdjbjbd",title : "Testing something hgvugfv huihu",note : "jjbjbcnihsu88ui8qah"},
-        {id : "jjhihieohohc",title : "Yet another fucking teshgyyg",note : "jjbjbcnihsu88ui8qah"},
-        {id : "biiuiuiui",title : "Testing something hgvugfv huihu",note : "jjbjbcnihsu88ui8qah"},
-        {id : "jbbkbiuiucu",title : "Yet another fucking testbhgyyg",note : "jjbjbcnihsu88ui8qah"}
+    const [loading, setLoading] = useState(false);
 
-    ]
+    const [userNotes, setUserNotes] : any = useState([]);
+
+    useEffect(() => {
+
+        setLoading(true)
+
+        const fetchUserNotes = async () => {
+
+            try {
+
+                const { data }: any = await supabase.auth.getUser()
+
+                if (data) {
+
+                    try {
+
+                        let { data: notes, error } : any = await supabase
+                            .from('notes')
+                            .select("*")
+                            .eq('user_id', `${data.user.id}`)
+
+                        setLoading(false)
+
+                        if (notes) {
+
+                            setUserNotes(notes)
+
+                        } else {
+
+                            console.log(error)
+
+                        }
+
+
+                    } catch (error) {
+
+                        console.log(error)
+
+                    }
+
+                }
+
+
+            } catch (error) {
+
+                console.log(error)
+
+            }
+
+        }
+
+        fetchUserNotes()
+
+    }, [])
+
 
 
     return (
 
         <>
 
-            <CreateNoteButton />
+            {loading ?
 
-            <div className="container pt-4 mb-3" style={{
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-            }}>
+                (
 
-                <div className="row">
+                    <div className="mx-auto mt-4" style={{ "width": "80px" }}>
+                        <Oval
+                            height={80}
+                            width={80}
+                            color="#38568C"
+                            wrapperStyle={{}}
+                            wrapperClass=""
+                            visible={true}
+                            ariaLabel='oval-loading'
+                            secondaryColor="#F7DD88"
+                            strokeWidth={2}
+                            strokeWidthSecondary={2}
 
-                {note_item.map((item,index) => (
+                        />
+                    </div>
+
+                ) : (
 
                     <>
-                    <div className="col mb-2" key={index}>
 
-                        <Link className="text-decoration-none" to={`/View/${item.title}/${item.note}`}>
-                        <div className="card">
+                        <CreateNoteButton />
 
-                            <div className="card-body">
+                        <div className="container pt-4 mb-3" style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'center',
+                        }}>
 
-                                <h4 className="text-dark">{item.title}</h4>
+                            <div className="row">
 
-                                <ul className="nav">
+                                {userNotes.map((item: { id: any; note: any; title: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; date_created: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; time_created: string | number | boolean | React.ReactElement<any, string | React.JSXElementConstructor<any>> | React.ReactFragment | React.ReactPortal | null | undefined; }) => (
 
-                                    <li className="nav-item">
+                                    <>
+                                        <div className="col mb-2" key={item.id}>
 
-                                        <a className="nav-link text-decoration-none text-muted" href="/">
+                                            <Link className="text-decoration-none" to="/">
+                                                <div className="card">
 
-                                            <CgCalendarDates /> 2/2202
+                                                    <div className="card-body">
 
-                                        </a>
+                                                        <h4 className="text-dark">{item.title}</h4>
 
-                                    </li>
+                                                        <ul className="nav">
 
-                                    <li className="nav-item">
+                                                            <li className="nav-item">
 
-                                        <a className="nav-link text-decoration-none text-muted" href="/">
+                                                                <a className="nav-link text-decoration-none text-muted" href="/">
 
-                                            <CgTime /> 12:47
+                                                                    <CgCalendarDates /> {item.date_created}
 
-                                        </a>
+                                                                </a>
 
-                                    </li>
+                                                            </li>
 
-                                    <li className="nav-item">
+                                                            <li className="nav-item">
 
-                                        <a className="nav-link text-decoration-none text-danger" href="/">
+                                                                <a className="nav-link text-decoration-none text-muted" href="/">
 
-                                            <CgTrash /> Delete
+                                                                    <CgTime /> {item.time_created}
 
-                                        </a>
+                                                                </a>
 
-                                    </li>
+                                                            </li>
 
-                                </ul>
+                                                            <li className="nav-item">
+
+                                                                <a className="nav-link text-decoration-none text-danger" href="/">
+
+                                                                    <CgTrash /> Delete
+
+                                                                </a>
+
+                                                            </li>
+
+                                                        </ul>
+
+                                                    </div>
+
+                                                </div>
+                                            </Link>
+
+                                        </div>
+
+                                        <CreateNoteModal />
+
+                                    </>
+
+                                ))}
 
                             </div>
 
                         </div>
-                        </Link>
-                       
-                    </div>
-                    
-                    <CreateNoteModal />
+
+                        <Outlet />
+
+                        <CreateNoteModal />
 
                     </>
 
-                ))}   
+                )
 
-                </div>
+            }
 
-            </div>
 
-            <Outlet />
 
         </>
+
+
 
     )
 
