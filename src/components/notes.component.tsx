@@ -2,20 +2,20 @@ import React from "react";
 import { Outlet, Link } from "react-router-dom"
 import CreateNoteButton from "./createNoteButton.component";
 import { CgTrash } from "react-icons/cg";
-import CreateNoteModal from "./createNoteModal.component";
 import supabase from "../supabase";
-import { useEffect, useState} from 'react'
+import { useEffect, useState } from 'react'
 import { Oval } from 'react-loader-spinner'
+import { BiLinkExternal } from "react-icons/bi";
 
 
 function Notes() {
-
 
     const [loading, setLoading] = useState(false);
 
     const [userNotes, setUserNotes]: any = useState([]);
 
     useEffect(() => {
+
 
         setLoading(true)
 
@@ -33,6 +33,7 @@ function Notes() {
                             .from('notes')
                             .select("*")
                             .eq('user_id', `${data.user.id}`)
+                            .order('id', { ascending: false })
 
                         setLoading(false)
 
@@ -53,6 +54,7 @@ function Notes() {
 
                     }
 
+
                 }
 
 
@@ -67,6 +69,12 @@ function Notes() {
         fetchUserNotes()
 
     }, [])
+
+    const handleDelete = (noteDeleteId : any) => () => {
+
+        //alert(`${noteDeleteId}`)
+        
+    };
 
 
 
@@ -113,35 +121,41 @@ function Notes() {
                                     <>
                                         <div className="col mb-2" key={item.id}>
 
-                                            <Link className="text-decoration-none" to={`/View/${item.id}`}>
-                                                <div className="card">
 
-                                                    <div className="card-body">
+                                            <div className="card">
 
-                                                        <h4 className="text-dark">{item.title}</h4>
+                                                <div className="card-header">
 
-                                                        <ul className="nav">
-
-                                                            <li className="nav-item">
-
-                                                                <Link className="nav-link text-decoration-none text-danger" to={`/Delete/${item.id}`}>
-
-                                                                    <CgTrash /> Delete
-
-                                                                </Link>
-
-                                                            </li>
-
-                                                        </ul>
-
-                                                    </div>
+                                                    <h4 className="text-dark card-title">{item.title}</h4>
 
                                                 </div>
-                                            </Link>
+
+
+                                                <div className="card-body">
+
+
+                                                    <Link className="text-decoration-none card-link" to={`/View/${item.id}`}>
+                                                        <button className=" btn btn-sm" style={{
+                                                            "backgroundColor": "#F7DD88",
+                                                            "color": "#38568C"
+                                                        }}>
+                                                            <BiLinkExternal />
+                                                        </button>
+                                                    </Link>
+
+                                                    <button className="card-link btn btn-danger btn-sm"
+                                                    onClick={handleDelete(`${item.id}`)} 
+                                                    >
+                                                        <CgTrash />
+                                                    </button>
+
+
+                                                </div>
+
+                                            </div>
+
 
                                         </div>
-
-                                        <CreateNoteModal />
 
                                     </>
 
@@ -152,8 +166,6 @@ function Notes() {
                         </div>
 
                         <Outlet />
-
-                        <CreateNoteModal />
 
                     </>
 

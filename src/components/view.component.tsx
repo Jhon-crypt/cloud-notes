@@ -103,28 +103,20 @@ function ViewNotesComp() {
 
                                     <div className="card">
 
-                                        <div className="card-body">
+                                        <div className="card-header">
 
                                             <h2 className="text-center">{noteTitle}</h2>
 
+                                        </div>
 
-                                            <ul className="nav justify-content-center">
+                                        <div className="card-body">
 
+                                            <p className="card-text">{note}</p>
 
-                                                <li className="nav-item">
+                                        </div>
 
-                                                    <a className="nav-link text-decoration-none text-danger" href="/">
-
-                                                        <CgTrash /> Delete
-
-                                                    </a>
-
-                                                </li>
-
-                                            </ul>
-
-                                            <p>{note}</p>
-
+                                        <div className="card-footer">
+                                            <button className="card-link btn btn-danger btn-sm" ><CgTrash /></button>
                                         </div>
 
                                     </div>
