@@ -23,7 +23,7 @@ function App() {
             <Route path="Signup" element={<SignUpPage />} />
             <Route path="Login" element={<LoginPage />} />
             <Route path="Notes" element={<NotesPage /> } />
-            <Route path="View/:heading/:content" element={<ViewNotes />} />
+            <Route path="View/:id" element={<ViewNotes />} />
             <Route path="Profile" element={<ProfilePage />} />
             <Route path="AccountCreated" element={<AccountCreatedPage />} />
           </Route>

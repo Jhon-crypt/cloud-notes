@@ -16,6 +16,8 @@ function CreateNoteModal() {
 
     const [noteStatus, setNoteStatus] = useState(false)
 
+    const [redirect, setRedirect] = useState(false)
+
 
     const handleCreateNote = async (event: any) => {
 
@@ -57,11 +59,15 @@ function CreateNoteModal() {
 
                         window.location.href = '/Notes';
 
+                        setRedirect(true)
+
                         setErrorStatus(false)
 
                         setNoteStatus(true)
 
-                    
+
+                        
+
                     }
 
 
@@ -210,4 +216,7 @@ function CreateNoteModal() {
 
 }
 
+
+
 export default CreateNoteModal
+

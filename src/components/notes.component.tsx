@@ -4,7 +4,7 @@ import CreateNoteButton from "./createNoteButton.component";
 import { CgTrash } from "react-icons/cg";
 import CreateNoteModal from "./createNoteModal.component";
 import supabase from "../supabase";
-import { useEffect, useState } from 'react'
+import { useEffect, useState} from 'react'
 import { Oval } from 'react-loader-spinner'
 
 
@@ -13,7 +13,7 @@ function Notes() {
 
     const [loading, setLoading] = useState(false);
 
-    const [userNotes, setUserNotes] : any = useState([]);
+    const [userNotes, setUserNotes]: any = useState([]);
 
     useEffect(() => {
 
@@ -29,7 +29,7 @@ function Notes() {
 
                     try {
 
-                        let { data: notes, error } : any = await supabase
+                        let { data: notes, error }: any = await supabase
                             .from('notes')
                             .select("*")
                             .eq('user_id', `${data.user.id}`)
@@ -113,7 +113,7 @@ function Notes() {
                                     <>
                                         <div className="col mb-2" key={item.id}>
 
-                                            <Link className="text-decoration-none" to="/">
+                                            <Link className="text-decoration-none" to={`/View/${item.id}`}>
                                                 <div className="card">
 
                                                     <div className="card-body">
@@ -124,11 +124,11 @@ function Notes() {
 
                                                             <li className="nav-item">
 
-                                                                <a className="nav-link text-decoration-none text-danger" href="/">
+                                                                <Link className="nav-link text-decoration-none text-danger" to={`/Delete/${item.id}`}>
 
                                                                     <CgTrash /> Delete
 
-                                                                </a>
+                                                                </Link>
 
                                                             </li>
 
