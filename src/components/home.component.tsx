@@ -1,6 +1,6 @@
 import React from 'react'
 import {Outlet, Link} from "react-router-dom"
-import image from '../assets/hero.jpg'
+//import image from '../assets/hero.jpg'
 import { BiUserCircle } from "react-icons/bi";
 import { BiLogInCircle } from "react-icons/bi";
 import Footer from './footer.component'
@@ -11,7 +11,7 @@ function Home(){
 
         heading : "Store Your Thoughts In The Cloud",
         lead : "CloudNotes helps you jot your thoughts easily, securely and also makes it accessible across any device you choose to view it from.",
-        image : image
+        image : "https://res.cloudinary.com/db7wwc9ex/image/upload/v1678585764/hero_mni5os.jpg"
 
     }
 
