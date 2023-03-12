@@ -2,7 +2,7 @@ import React from 'react'
 import { BiUserCircle } from "react-icons/bi";
 import { BiUserPin } from "react-icons/bi";
 import { BiLogOutCircle } from "react-icons/bi";
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import supabase from '../supabase';
 import { useNavigate } from 'react-router-dom';
 import { Oval } from 'react-loader-spinner'
@@ -14,7 +14,44 @@ function Profile() {
 
     const [loading, setLoading] = useState(false)
 
+    const [fullname, setFullname] = useState("")
 
+    const [email, setEmail] = useState("")
+
+    useEffect(() => {
+
+        const fetchUserProfile = async () => {
+
+            try {
+
+                setLoading(true)
+
+                const { data }: any = await supabase.auth.getUser()
+
+                setLoading(false)
+
+                if(data){
+
+                    console.log(data)
+
+                    setFullname(data.user.user_metadata.full_name)
+
+                    setEmail(data.user.email)
+
+                }
+
+            } catch(error){
+
+                console.log(error)
+
+            }
+
+        }
+
+        fetchUserProfile()
+      
+    }, [])
+    
 
     async function handleLogout() {
 
@@ -86,8 +123,8 @@ function Profile() {
                                     <div className="card-body">
 
                                         <BiUserPin style={{ "fontSize": "100px" }} />
-                                        <h3>Oladele John</h3>
-                                        <p>johnoladele690@gmail.com</p>
+                                        <h3>{fullname}</h3>
+                                        <p>{email}</p>
 
                                         <button onClick={handleLogout} className="btn btn-danger">
 
