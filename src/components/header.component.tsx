@@ -12,7 +12,7 @@ function Header(){
     const nav_head : any = {
 
         title1 : 'Cloud',
-        title2 : 'Notes'
+        title2 : 'Notez'
         
     }
 
