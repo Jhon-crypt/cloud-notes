@@ -6,6 +6,7 @@ import supabase from "../supabase";
 import { useEffect, useState } from 'react'
 import { Oval } from 'react-loader-spinner'
 import { BiLinkExternal } from "react-icons/bi";
+import { useNavigate } from 'react-router-dom';
 
 
 function Notes() {
@@ -70,10 +71,46 @@ function Notes() {
 
     }, [])
 
-    const handleDelete = (noteDeleteId : any) => () => {
+    let navigate = useNavigate()
 
-        //alert(`${noteDeleteId}`)
-        
+    const handleDelete = (noteDeleteId: any) => () => {
+
+        const deleteNotes = async () => {
+
+            //alert(`${noteDeleteId}`)
+
+            try {
+
+                setLoading(true)
+
+                const { error } = await supabase
+                .from('notes')
+                .delete()
+                .eq('id', `${noteDeleteId}`)
+
+                setLoading(false)
+
+                if(error){
+
+                    console.log(error)
+
+                }else{
+
+                    navigate("/Redirect")
+
+                }
+
+
+            } catch (error) {
+    
+                console.log(error)
+
+            }
+
+        }
+
+        deleteNotes()
+
     };
 
 
@@ -144,7 +181,7 @@ function Notes() {
                                                     </Link>
 
                                                     <button className="card-link btn btn-danger btn-sm"
-                                                    onClick={handleDelete(`${item.id}`)} 
+                                                        onClick={handleDelete(`${item.id}`)}
                                                     >
                                                         <CgTrash />
                                                     </button>

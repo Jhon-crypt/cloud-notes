@@ -10,6 +10,7 @@ import ViewNotes from './pages/view';
 import ProfilePage from './pages/profile';
 import AccountCreatedPage from './pages/accountCreated';
 import CreateNotePage from './pages/createNote';
+import Redirect from './components/redirect.component';
 
 function App() {
 
@@ -28,6 +29,7 @@ function App() {
             <Route path="Profile" element={<ProfilePage />} />
             <Route path="AccountCreated" element={<AccountCreatedPage />} />
             <Route path="CreateNote" element={<CreateNotePage />} />
+            <Route path="Redirect" element={<Redirect />} />
           </Route>
         </Routes>
       </BrowserRouter>

@@ -111,7 +111,7 @@ function ViewNotesComp() {
 
                                         <div className="card-body">
 
-                                            <p className="card-text">{note}</p>
+                                            <p className="card-text text-start">{note}</p>
 
                                         </div>
 
